@@ -1,0 +1,3 @@
+Cinema Room REST API.
+
+More infos soon...
