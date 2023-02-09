@@ -1,13 +1,11 @@
-CREATE TABLE CinemaRoom (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    total_rows INT,
-    total_columns INT
-);
-
-CREATE TABLE Seat (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    row INT,
-    column INT,
-    cinema_room_id BIGINT,
-    FOREIGN KEY (cinema_room_id) REFERENCES CinemaRoom(id)
+-- CREATE TABLE rooms (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     total_rows INT NOT NULL,
+--     total_columns INT NOT NULL
+-- );
+CREATE TABLE SEAT (
+    seat_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    seat_row INT NOT NULL,
+    seat_column INT NOT NULL,
+    is_available BOOLEAN NOT NULL -- room_id INT NOT NULL -- FOREIGN KEY (room_id) REFERENCES Room(id)
 );

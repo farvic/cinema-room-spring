@@ -1,6 +1,7 @@
-package com.farvic.cinemaroom.repo;
+// package com.farvic.cinemaroom.repo;
 
-import com.farvic.cinemaroom.domain.Room;
-import org.springframework.data.jpa.repository.JpaRepository;
+// import com.farvic.cinemaroom.domain.Room;
+// import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RoomRepo extends JpaRepository<Room, Long> {}
+// public interface RoomRepo extends JpaRepository<Room, Integer> {
+// }

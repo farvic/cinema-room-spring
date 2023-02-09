@@ -1,21 +1,54 @@
 package com.farvic.cinemaroom.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "SEAT")
 public class Seat {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "seat_id")
+    private long id;
+    @Column(name = "seat_row")
     private int row;
+    @Column(name = "seat_column")
     private int column;
+    @Column(name = "is_available")
+    private boolean isAvailable;
+
+    protected Seat() {
+    }
 
     public Seat(int row, int column) {
         this.row = row;
         this.column = column;
     }
 
-    protected Seat() {
+    public Seat(int row, int column, boolean isAvailable) {
+        this.row = row;
+        this.column = column;
+        this.isAvailable = isAvailable;
+    }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
     }
 
     public int getRow() {
@@ -32,6 +65,11 @@ public class Seat {
 
     public void setColumn(int column) {
         this.column = column;
+    }
+
+    @Override
+    public String toString() {
+        return "Seat [id=" + id + ", row=" + row + ", column=" + column + ", isAvailable=" + isAvailable + "]";
     }
 
 }
