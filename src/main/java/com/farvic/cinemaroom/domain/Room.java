@@ -1,47 +1,39 @@
-// package com.farvic.cinemaroom.domain;
+package com.farvic.cinemaroom.domain;
 
-// import java.util.List;
+import java.util.List;
 
-// import jakarta.persistence.CascadeType;
-// import jakarta.persistence.Entity;
-// import jakarta.persistence.GeneratedValue;
-// import jakarta.persistence.Id;
-// import jakarta.persistence.OneToMany;
+public class Room {
 
-// @Entity
-// public class Room {
-// @Id
-// @GeneratedValue
-// private Long id;
+    private int totalRows;
 
-// private int totalRows;
-// private int totalColumns;
+    private int totalColumns;
 
-// private List<Seat> seats;
+    private List<SeatDto> seats;
 
-// public Room(int totalRows, int totalColumns, List<Seat> seats) {
-// this.totalRows = totalRows;
-// this.totalColumns = totalColumns;
-// this.seats = seats;
-// }
+    public Room(List<SeatDto> seats) {
+        this.totalRows = 9;
+        this.totalColumns = 9;
+        this.seats = seats;
+    }
 
-// protected Room() {
+    protected Room() {
 
-// }
+    }
 
-// public int getId() {
-// return id;
-// }
+    public int getTotalRows() {
+        return totalRows;
+    }
 
-// public int getTotalRows() {
-// return totalRows;
-// }
+    public int getTotalColumns() {
+        return totalColumns;
+    }
 
-// public int getTotalColumns() {
-// return totalColumns;
-// }
+    public List<SeatDto> getSeats() {
+        return seats;
 
-// public List<Seat> getSeats() {
-// return seats;
-// }
-// }
+    }
+
+    public List<SeatDto> setSeats() {
+        return seats;
+    }
+}

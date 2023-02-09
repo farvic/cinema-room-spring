@@ -1,11 +1,10 @@
 package com.farvic.cinemaroom.web;
 
+import com.farvic.cinemaroom.domain.Room;
 import com.farvic.cinemaroom.domain.Seat;
 import com.farvic.cinemaroom.domain.SeatDto;
 import com.farvic.cinemaroom.repo.SeatRepository;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-// import java.util.Comparator;
+
 import java.util.List;
 
 // @CrossOrigin(origins = "http://localhost:8081")
@@ -27,24 +26,24 @@ public class SeatController {
     // private static final Logger LOGGER =
     // LoggerFactory.getLogger(SeatRepository.class);
 
-    @GetMapping
-    public ResponseEntity<List<Seat>> getAllSeats() {
-        // try {
-        List<Seat> seats = new ArrayList<Seat>();
+    // @GetMapping
+    // public ResponseEntity<List<Seat>> getAllSeats() {
+    // // try {
+    // List<Seat> seats = new ArrayList<Seat>();
 
-        seatRepository.findAll().forEach(seats::add);
-        // else
-        // seatRepository.findByTitleContaining(title).forEach(seats::add);
+    // seatRepository.findAll().forEach(seats::add);
+    // // else
+    // // seatRepository.findByTitleContaining(title).forEach(seats::add);
 
-        if (seats.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
+    // if (seats.isEmpty()) {
+    // return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    // }
 
-        return new ResponseEntity<>(seats, HttpStatus.OK);
-        // } catch (Exception e) {
-        // return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        // }
-    }
+    // return new ResponseEntity<>(seats, HttpStatus.OK);
+    // // } catch (Exception e) {
+    // // return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    // // }
+    // }
 
     // @GetMapping("/{id}")
     // public ResponseEntity<Seat> getSeatById(@PathVariable("id") long id) {
@@ -121,8 +120,8 @@ public class SeatController {
 
     // Gets the available seats and returns them as a list of SeatDto objects (row,
     // column)
-    @GetMapping("/available")
-    public ResponseEntity<List<SeatDto>> findByAvailability() {
+    @GetMapping()
+    public ResponseEntity<Room> findByAvailability() {
         try {
             List<SeatDto> seats = new ArrayList<SeatDto>();
 
@@ -133,7 +132,8 @@ public class SeatController {
             if (seats.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-            return new ResponseEntity<>(seats, HttpStatus.OK);
+            Room room = new Room(seats);
+            return new ResponseEntity<Room>(room, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

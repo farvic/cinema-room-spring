@@ -3,7 +3,7 @@
 --     total_rows INT NOT NULL,
 --     total_columns INT NOT NULL
 -- );
-CREATE TABLE SEAT (
+CREATE TABLE seats (
     seat_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     seat_row INT NOT NULL,
     seat_column INT NOT NULL,
