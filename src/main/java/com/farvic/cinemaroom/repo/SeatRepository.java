@@ -8,6 +8,8 @@ public interface SeatRepository extends CrudRepository<Seat, Long> {
 
     List<Seat> findAllByIsAvailable(boolean isAvailable);
 
+    Seat findByRowAndColumn(int row, int column);
+
     // @Query("SELECT new Seat(seat.row, seat.column) FROM Seat seat WHERE
     // seat.isAvailable = true")
     // List<Seat> findRowAndColumnByIsAvailable(boolean isAvailable);

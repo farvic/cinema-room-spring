@@ -2,6 +2,8 @@ package com.farvic.cinemaroom.domain;
 
 import java.util.List;
 
+import com.farvic.cinemaroom.dto.SeatDto;
+
 public class Room {
 
     private int totalRows;

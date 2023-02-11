@@ -18,6 +18,10 @@ public class Seat {
     private int row;
     @Column(name = "seat_column")
     private int column;
+
+    @Column(name = "price")
+    private int price;
+
     @Column(name = "is_available")
     private boolean isAvailable;
 
@@ -29,9 +33,16 @@ public class Seat {
         this.column = column;
     }
 
-    public Seat(int row, int column, boolean isAvailable) {
+    public Seat(int row, int column, int price) {
         this.row = row;
         this.column = column;
+        this.price = price;
+    }
+
+    public Seat(int row, int column, int price, boolean isAvailable) {
+        this.row = row;
+        this.column = column;
+        this.price = price;
         this.isAvailable = isAvailable;
     }
 
@@ -43,11 +54,19 @@ public class Seat {
         this.id = id;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     public boolean isAvailable() {
         return isAvailable;
     }
 
-    public void setAvailable(boolean isAvailable) {
+    public void setIsAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
     }
 

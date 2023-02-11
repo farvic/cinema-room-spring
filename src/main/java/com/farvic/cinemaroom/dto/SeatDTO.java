@@ -1,50 +1,45 @@
-// package com.farvic.cinemaroom.dto;
+package com.farvic.cinemaroom.dto;
 
-// public class SeatDTO {
-// private Long id;
-// private Boolean isAvailable;
-// private int column;
-// private int row;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-// public SeatDTO(Long id, Boolean isAvailable, int column, int row) {
-// this.id = id;
-// this.isAvailable = isAvailable;
-// this.column = column;
-// this.row = row;
-// }
+public class SeatDto {
 
-// public Long getId() {
-// return id;
-// }
+    @JsonProperty("row")
+    private int row;
 
-// public void setId(Long id) {
-// this.id = id;
-// }
+    @JsonProperty("column")
+    private int column;
 
-// public int getColumn() {
-// return column;
-// }
+    @JsonProperty("price")
+    private int price;
 
-// public void setColumn(int column) {
-// this.column = column;
-// }
+    public SeatDto(int row, int column, int price) {
+        this.row = row;
+        this.column = column;
+        this.price = price;
+    }
 
-// public int getRow() {
-// return row;
-// }
+    public int getRow() {
+        return row;
+    }
 
-// public void setRow(int row) {
-// this.row = row;
-// }
+    public void setRow(int row) {
+        this.row = row;
+    }
 
-// public SeatDTO() {
-// }
+    public int getColumn() {
+        return column;
+    }
 
-// public Boolean isAvailable() {
-// return isAvailable;
-// }
+    public void setColumn(int column) {
+        this.column = column;
+    }
 
-// public void setIsAvailable(Boolean isAvailable) {
-// this.isAvailable = isAvailable;
-// }
-// }
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+}
