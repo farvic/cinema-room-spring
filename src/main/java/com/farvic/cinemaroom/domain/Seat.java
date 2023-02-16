@@ -1,11 +1,10 @@
 package com.farvic.cinemaroom.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "seats")
@@ -13,7 +12,8 @@ public class Seat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seat_id")
-    private long id;
+    @JsonIgnore
+    private int id;
     @Column(name = "seat_row")
     private int row;
     @Column(name = "seat_column")
@@ -22,15 +22,17 @@ public class Seat {
     @Column(name = "price")
     private int price;
 
-    @Column(name = "is_available")
+    @Column(name = "available")
+
     private boolean isAvailable;
 
-    protected Seat() {
-    }
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "cinema_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Cinema cinema;
 
-    public Seat(int row, int column) {
-        this.row = row;
-        this.column = column;
+    protected Seat() {
     }
 
     public Seat(int row, int column, int price) {
@@ -46,11 +48,19 @@ public class Seat {
         this.isAvailable = isAvailable;
     }
 
-    public long getId() {
+    public Seat(int id, int row, int column, int price, boolean isAvailable) {
+        this.id = id;
+        this.row = row;
+        this.column = column;
+        this.price = price;
+        this.isAvailable = isAvailable;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -60,14 +70,6 @@ public class Seat {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public boolean isAvailable() {
-        return isAvailable;
-    }
-
-    public void setIsAvailable(boolean isAvailable) {
-        this.isAvailable = isAvailable;
     }
 
     public int getRow() {
@@ -86,9 +88,31 @@ public class Seat {
         this.column = column;
     }
 
+    @JsonIgnore
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setIsAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
+    }
+
     @Override
     public String toString() {
-        return "Seat [id=" + id + ", row=" + row + ", column=" + column + ", isAvailable=" + isAvailable + "]";
+        return "Seat [id=" + id + ", row=" + row + ", column=" + column + ", price=" + price + ", isAvailable="
+                + isAvailable + "]";
+    }
+
+    public String toJsonString() {
+        return "{" +
+                "\"row\":" + row +
+                ",\"column\":" + column +
+                ",\"price\":" + price +
+                "}";
+    }
+
+    public Cinema getCinema() {
+        return cinema;
     }
 
 }

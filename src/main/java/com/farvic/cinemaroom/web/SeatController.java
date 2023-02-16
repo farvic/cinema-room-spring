@@ -1,97 +1,48 @@
 package com.farvic.cinemaroom.web;
 
-import com.farvic.cinemaroom.domain.Room;
+import com.farvic.cinemaroom.domain.Order;
 import com.farvic.cinemaroom.domain.Seat;
-import com.farvic.cinemaroom.dto.SeatDto;
-import com.farvic.cinemaroom.repo.SeatRepository;
+import com.farvic.cinemaroom.domain.Token;
+import com.farvic.cinemaroom.repositories.CinemaRepository;
 
+import com.farvic.cinemaroom.service.SeatService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-// @CrossOrigin(origins = "http://localhost:28852")
+@CrossOrigin(origins = "http://localhost:28852")
 @RestController
 public class SeatController {
 
-    SeatRepository seatRepository;
+    private final SeatService seatService;
 
-    public SeatController(SeatRepository seatRepository) {
-        this.seatRepository = seatRepository;
+    private static final Logger LOGGER = LoggerFactory.getLogger(CinemaRepository.class);
+
+    public SeatController(SeatService seatService) {
+        this.seatService = seatService;
     }
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(SeatRepository.class);
-
-    @GetMapping("/all")
-    public ResponseEntity<List<Seat>> getAllSeats() {
-        // try {
-        List<Seat> seats = new ArrayList<Seat>();
-
-        seatRepository.findAll().forEach(seats::add);
-        // else
-        // seatRepository.findByTitleContaining(title).forEach(seats::add);
-
-        if (seats.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-
-        return new ResponseEntity<>(seats, HttpStatus.OK);
-        // } catch (Exception e) {
-        // return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        // }
+    @GetMapping("/seats-list")
+    public List<Seat> getAvailableSeats() {
+        return seatService.getAllSeats();
     }
 
-    @PostMapping("/purchase")
-    public ResponseEntity<Object> purchaseSeat(@RequestBody Seat seat) {
-        // LOGGER.info("REQUEST: seat: " + seat.toString());
-        HashMap<String, Object> responseBody = new HashMap<>();
-
-        Seat _seat = seatRepository.findByRowAndColumn(seat.getRow(), seat.getColumn());
-
-        if (_seat == null) {
-            responseBody.put("error", "The number of a row or a column is out of bounds!");
-            return new ResponseEntity<>(responseBody, HttpStatus.BAD_REQUEST);
-
-        }
-        if (_seat.isAvailable()) {
-            _seat.setIsAvailable(false);
-            seatRepository.save(_seat);
-            responseBody.putAll(Map.of("row", _seat.getRow(), "column", _seat.getColumn(), "price", _seat.getPrice()));
-            return new ResponseEntity<>(responseBody, HttpStatus.OK);
-        } else {
-            responseBody.put("error", "The ticket has been already purchased!");
-            return new ResponseEntity<>(responseBody, HttpStatus.BAD_REQUEST);
-        }
-
+    @PostMapping(value = "/purchase", consumes = "application/json", produces = "application/json")
+    public Order purchaseSeat(@RequestBody Seat seat) {
+        return seatService.purchaseSeat(seat);
     }
 
-    @GetMapping("/seats")
-    public ResponseEntity<Room> findByAvailability() {
-        try {
-            List<SeatDto> availableSeats = new ArrayList<>();
-            LOGGER.info("VEIO CÁ");
-            seatRepository.findAllByIsAvailable(true).forEach((seat) -> {
-                availableSeats.add(new SeatDto(seat.getRow(), seat.getColumn(), seat.getPrice()));
-            });
-            LOGGER.info("availableSeats: " + availableSeats.toString());
-            if (availableSeats.isEmpty()) {
+    @PostMapping("/return")
+    public Order refundTicket(@RequestBody Token token) {
+        return seatService.refundTicket(token);
+    }
 
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            Room room = new Room(availableSeats);
-            LOGGER.info(room.toString());
-            return new ResponseEntity<>(room, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @GetMapping("/seat")
+    public Seat getSeatByRowAndColumn(@RequestBody Seat seat) {
+        return seatService.getSeatByRowAndColumn(seat);
     }
 
 }
