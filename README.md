@@ -16,12 +16,6 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-<!-- [![Contributors][contributors-shield]][contributors-url] -->
-<!-- [![Forks][forks-shield]][forks-url] -->
-<!-- [![Stargazers][stars-shield]][stars-url] -->
-<!-- [![Issues][issues-shield]][issues-url] -->
-<!-- [![MIT License][license-shield]][license-url] -->
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
 <!-- <br />
@@ -45,6 +39,7 @@
     <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
   </p>
 </div> -->
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
 # Cinema Room REST API
 
@@ -195,8 +190,13 @@ Don't forget to give the project a star! Thanks again!
 
 If you want to talk about the project, feel free to contact me through one of my socials.
 
-Victor Fonseca - [@Linkedin](https://www.linkedin.com/in/victorfa)
+Victor Fonseca -  [@Linkedin](https://www.linkedin.com/in/victorfa)
 
 Project Link: [https://github.com/farvic/cinema-room-spring](https://github.com/your_username/repo_name)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-blue.svg?style=for-the-badge
+[linkedin-url]: https://linkedin.com/in/victorfa
