@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -44,5 +45,29 @@ public interface SeatRepository extends JpaRepository<Seat, Integer> {
      */
 
     Optional<Seat> findByRowAndColumn(@Param("row") int row, @Param("column") int column);
+
+    @Override
+    @RestResource(exported = false)
+    <S extends Seat> S save(S seat);
+
+    @Override
+    @RestResource(exported = false)
+    <S extends Seat> List<S> saveAll(Iterable<S> seats);
+
+    @Override
+    @RestResource(exported = false)
+    void deleteById(Integer id);
+
+    @Override
+    @RestResource(exported = false)
+    void delete(Seat seat);
+
+    @Override
+    @RestResource(exported = false)
+    void deleteAll(Iterable<? extends Seat> seats);
+
+    @Override
+    @RestResource(exported = false)
+    void deleteAll();
 
 }

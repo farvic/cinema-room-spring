@@ -16,15 +16,15 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+<!-- [![Contributors][contributors-shield]][contributors-url] -->
+<!-- [![Forks][forks-shield]][forks-url] -->
+<!-- [![Stargazers][stars-shield]][stars-url] -->
+<!-- [![Issues][issues-shield]][issues-url] -->
+<!-- [![MIT License][license-shield]][license-url] -->
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
-<br />
+<!-- <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
 
@@ -44,7 +44,9 @@
     ·
     <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
   </p>
-</div>
+</div> -->
+
+# Cinema Room REST API
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -77,12 +79,12 @@
 
 The Cinema Room Rest Service is a backend project developed as a [Hyperskill](https://hyperskill.org/projects/189) challenge from the [Java Backend Developer Track](https://hyperskill.org/tracks/12). It was divided in four parts in which the developer had to implement some tasks that go through tests before going to the next part.
 
-### Built With
+## Built With
 
 * [Spring Boot 3.0.2](https://start.spring.io) and [Java 17](https://www.java.com/download/)
 * [Maven 3.8.6](https://maven.apache.org/download.cgi)
 
-### Topics used during the project
+## Some topics covered doing the project
 
 * REST API
 * Domain-Driven Design
@@ -90,14 +92,12 @@ The Cinema Room Rest Service is a backend project developed as a [Hyperskill](ht
 * Databases with H2 embedded database
 * Custom Exception Handling
 * Logging
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-### Built With
+* Swagger UI API
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 1. . Clone the repo
@@ -106,46 +106,76 @@ The Cinema Room Rest Service is a backend project developed as a [Hyperskill](ht
    git clone https://github.com/farvic/cinema-room-spring.git
    ```
 
-3. Run using Maven or your IDE
+2. Run using Maven or your IDE
 
    ```bash
    mvn spring-boot:run
    ```
 
-4. In order to run the tests
+3. In order to run the tests
 
    ```bash
    mvn test
    ```
 
+4. Some relevant lines from the application.properties
+
+   ```properties
+    # localhost:8080/
+    port=8080
+
+
+    # localhost:8080/swagger-ui/index.html
+
+    springdoc.swagger-ui.path=/swagger-ui.html
+    springdoc.api-docs.path=/v3/api-docs
+    sprindoc.swagger-ui.config-url=/v3/api-docs/swagger-config
+    springdoc.swagger-ui.url=/v3/api-docs
+
+
+    # H2 Database name - in memory database
+    spring.datasource.url=jdbc:h2:mem:testdb
+    spring.h2.console.enabled=true
+
+    # localhost:8080/h2-console
+    spring.h2.console.path=/h2-console
+
+    spring.datasource.driverClassName=org.h2.Driver
+
+    # authentication to access the database console
+    spring.datasource.username=sa
+    spring.datasource.password=
+   ```
+
+5. An API documentation can be accessed through [localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html) once the program is running
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## The Challenge
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+The project was devided in four parts. In order to avoid a very long readme, you can access the readme about each of the parts by going to the tasks' folder or clicking on one of the links below:
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+1. [The show begins](tasks/Part%201%20-%20The%20show%20begins/task.md)
+2. [Take your seat](tasks/Part%202%20-%20Take%20your%20seat/task.md)
+3. [A change of plans](tasks/Part%203%20-%20A%20change%20of%20plans/task.md)
+4. [The statistics](tasks/Part%204%20-%20The%20statistics/task.md)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
 ## Roadmap
 
-* [x] Add Changelog
-* [x] Add back to top links
-* [ ] Add Additional Templates w/ Examples
-* [ ] Add "components" document to easily copy & paste sections of the readme
-* [ ] Multi-language Support
-  * [ ] Chinese
-  * [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+* [x] Migrate the project from the [old repository](https://github.com/farvic/java-projects) to this one
+* [x] Organize the folders
+* [x] Update the readme with details about the project
+* [ ] Add a remote database support with a Dockerfile
+* [ ] And more...?
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
-## Contributing
+<!-- ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -158,51 +188,15 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+If you want to talk about the project, feel free to contact me through one of my socials.
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Victor Fonseca - [@Linkedin](https://www.linkedin.com/in/victorfa)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+Project Link: [https://github.com/farvic/cinema-room-spring](https://github.com/your_username/repo_name)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
