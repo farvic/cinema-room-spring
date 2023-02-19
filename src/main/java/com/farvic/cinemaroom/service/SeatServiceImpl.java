@@ -22,6 +22,13 @@ public class SeatServiceImpl implements SeatService {
 
     final private OrderRepository orderRepository;
 
+    /**
+     * Construct SeatService
+     *
+     * @param cinemaRepository Cinema Repository
+     * @param seatRepository   Seat Repository
+     * @param orderRepository  Order Repository
+     */
     public SeatServiceImpl(CinemaRepository cinemaRepository, SeatRepository seatRepository,
             OrderRepository orderRepository) {
         this.cinemaRepository = cinemaRepository;
@@ -30,6 +37,14 @@ public class SeatServiceImpl implements SeatService {
 
     }
 
+    /**
+     * Get all seats in the cinema room with the id 1 (only one in the project)
+     * 
+     * @return List of seats
+     * @throws ResourceNotFoundException if the cinema is closed
+     * 
+     */
+
     @Override
     public List<Seat> getAllSeats() {
         if (!cinemaRepository.existsById(1)) {
@@ -37,6 +52,16 @@ public class SeatServiceImpl implements SeatService {
         }
         return seatRepository.findByCinemaId(1);
     }
+
+    /**
+     * Purchase a seat and return the order which contains the the
+     * seat (ticket) and an UUID token
+     * 
+     * @param seat Seat to purchase
+     * @return Order
+     * @throws OrderException if the seat is not available or the row or column
+     * 
+     */
 
     @Override
     public Order purchaseSeat(Seat seat) {
@@ -60,6 +85,15 @@ public class SeatServiceImpl implements SeatService {
             throw new OrderException("The ticket has been already purchased!");
         }
     }
+
+    /**
+     * Return a ticket by the token
+     * 
+     * @param token Token
+     * @return Order
+     * @throws OrderException if the token is wrong
+     * 
+     */
 
     @Override
     public Order refundTicket(Token token) {
@@ -85,6 +119,15 @@ public class SeatServiceImpl implements SeatService {
         return _order;
 
     }
+
+    /**
+     * Get a seat by the row and column
+     * 
+     * @param seat Seat
+     * @return Seat
+     * @throws OrderException if the row or column is out of bounds
+     * 
+     */
 
     @Override
     public Seat getSeatByRowAndColumn(@RequestBody Seat seat) {

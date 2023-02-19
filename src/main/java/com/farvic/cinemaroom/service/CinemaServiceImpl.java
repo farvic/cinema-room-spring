@@ -16,10 +16,29 @@ public class CinemaServiceImpl implements CinemaService {
     private final CinemaRepository cinemaRepository;
     private final SeatRepository seatRepository;
 
+    /**
+     * Construct CinemaService
+     *
+     * @param cinemaRepository Cinema Repository
+     * @param seatRepository   Seat Repository
+     *
+     */
+
     public CinemaServiceImpl(CinemaRepository cinemaRepository, SeatRepository seatRepository) {
         this.cinemaRepository = cinemaRepository;
         this.seatRepository = seatRepository;
     }
+
+    /**
+     * Get only the available seats in the cinema and returns the cinema object
+     * with the total number of rows, columns and available seats
+     * 
+     * * Example 1 output
+     *
+     * @return Cinema
+     * @throws ResourceNotFoundException if the cinema is closed
+     *
+     */
 
     @Override
     public Cinema getCinemaSeats() {

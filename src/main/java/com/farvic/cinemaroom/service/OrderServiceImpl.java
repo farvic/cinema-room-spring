@@ -17,18 +17,39 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
-    private final SeatRepository seatRepository;
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderRepository.class);
 
-    public OrderServiceImpl(OrderRepository orderRepository, SeatRepository seatRepository) {
+    /**
+     * Construct OrderService
+     *
+     * @param orderRepository Order Repository
+     *
+     */
+
+    public OrderServiceImpl(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
-        this.seatRepository = seatRepository;
     }
+
+    /**
+     * Get all orders
+     *
+     * @return List of orders
+     */
 
     @Override
     public List<Order> getOrders() {
         return orderRepository.findAll();
     }
+
+    /**
+     * Get stats based on:
+     * * number of purchased tickets (all orders)
+     * * current income
+     * * number of available seats
+     *
+     * @param id Order id
+     * @return Order
+     */
 
     @Override
     public Stats getStats(String password) {
